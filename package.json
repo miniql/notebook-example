@@ -1,0 +1,10 @@
+{
+    "name": "notebook-example",
+    "version": "1.0.0",
+    "description": "Data-Forge Notebook - A JavaScript notebook",
+    "dependencies": {
+        "@miniql/csv": "0.0.2",
+        "datakit": "^1.0.3",
+        "miniql": "0.0.4"
+    }
+}
