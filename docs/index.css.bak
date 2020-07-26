@@ -1,0 +1,221 @@
+body {
+    font-family: 'Noto Sans','Roboto', sans-serif;
+    line-height: normal;
+    user-select: none;
+    background-color: white;
+}
+
+.container {
+    max-width: 900px;
+    width: calc(100% - 160px);
+    margin: auto;
+}
+
+.selected-cell-handle {
+    width: 8px;
+    border-left: 4px transparent solid;
+    background-color: transparent;
+    transition: border 0.2s ease-in-out;
+}
+
+.cell-container:hover .selected-cell-handle {
+    border-left: 4px rgba(0, 0, 255, 0.3) solid !important;
+}
+
+.selected-cell-handle.focused {
+    border-left: 4px rgba(0, 0, 255, 0.6) solid !important;
+    animation: cell-border-pulse 0.75s ease-out !important;
+}
+
+.cell-container:hover .selected-cell-handle.focused {
+    border-left: 4px rgba(0, 0, 255, 0.8) solid !important;
+}
+
+.cell-handle {
+    width: 6px;
+    border-left: 1px rgba(0, 0, 0, 0.2) solid;
+    border-bottom: 1px rgba(0, 0, 0, 0.2) solid;
+    border-top: 1px rgba(0, 0, 0, 0.2) solid;
+}
+
+.cell-container:hover .cell-handle {
+    width: 6px;
+    border-left: 1px rgba(0, 0, 255, 0.3) dashed;
+    border-bottom: 1px rgba(0, 0, 255, 0.3) dashed;
+    border-top: 1px rgba(0, 0, 255, 0.3) dashed;
+}
+
+.cell-handle.focused {
+    width: 6px;
+    border-left: 1px rgba(0, 0, 255, 0.6) dashed;
+    border-bottom: 1px rgba(0, 0, 255, 0.6) dashed;
+    border-top: 1px rgba(0, 0, 255, 0.6) dashed;
+}
+
+.cell-container:hover .cell-handle.focused {
+    width: 6px;
+    border-left: 1px rgba(0, 0, 255, 0.8) dashed;
+    border-bottom: 1px rgba(0, 0, 255, 0.8) dashed;
+    border-top: 1px rgba(0, 0, 255, 0.8) dashed;
+}
+
+.cell-border {    
+    border-top: 1px dashed transparent;
+    border-right: 1px dashed transparent;
+    border-bottom: 1px dashed transparent;
+    transition: border 0.2s ease-in-out;
+}
+
+.cell-container:hover .cell-border {
+    border-top: 1px dashed rgba(0, 0, 255, 0.3);
+    border-right: 1px dashed rgba(0, 0, 255, 0.3);
+    border-bottom: 1px dashed rgba(0, 0, 255, 0.3);
+    transition: border 0.2s ease-in-out;
+}
+
+.cell-border.focused {
+    border-top: 1px dashed rgba(0, 0, 255, 0.6) !important;
+    border-right: 1px dashed rgba(0, 0, 255, 0.6) !important;
+    border-bottom: 1px dashed rgba(0, 0, 255, 0.6) !important;
+    animation: cell-border-pulse 0.75s ease-out !important;
+}            
+
+.cell-container:hover .cell-border.focused {
+    border-top: 1px dashed rgba(0, 0, 255, 0.8) !important;
+    border-right: 1px dashed rgba(0, 0, 255, 0.8) !important;
+    border-bottom: 1px dashed rgba(0, 0, 255, 0.8) !important;
+    transition: border 0.2s ease-in-out;
+}   
+
+.cell-border.empty {
+    border-top: 1px dashed rgba(0, 0, 0, 0.2) !important;
+    border-right: 1px dashed rgba(0, 0, 0, 0.2) !important;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.2) !important;
+    transition: border 0.2s ease-in-out;
+}          
+
+.cell-msg {
+    display: none;
+}
+
+.cell-container:hover .cell-msg {
+    display: block;
+}
+
+.cell-border.focused .cell-msg {
+    display: block;
+}
+
+.find-dialog {
+    opacity: 0;    
+    position: fixed;
+    top: 55px;
+    right: 10px;
+    z-index: 1500;
+    transition: opacity 0.2s ease-in-out;
+    pointer-events: none;
+}
+
+.find-dialog.show {
+    opacity: 1;
+    transition: opacity 0.25s ease-in-out;
+    pointer-events: auto;
+}
+
+@keyframes find-dialog-border-pulse {
+    0%   { border-color: rgba(0, 0, 0, 0.4); }
+    50%  { border-color: rgba(0, 0, 0, 1); }
+    100% { border-color: rgba(0, 0, 0, 0.4); }
+}
+
+.find-dialog-border {
+    border: 1px solid rgb(0, 0, 0, 0.4);
+}
+
+.find-dialog.show .find-dialog-border {
+    animation: find-dialog-border-pulse 0.75s ease-out;
+}
+
+/*
+Hover classes:
+
+    cell-hover-region   - The region that can be hovered to show hidden content.
+    cell-hover-content  - Content displayed on hover.
+*/
+
+.cell-hover-content {
+    display: none;
+}
+
+.cell-hover-region:hover .cell-hover-content {
+    display: block;
+}
+
+.dragging .cell-hover-content {
+    display: none !important;
+}
+
+.output-hover-content {
+    display: none;
+}
+
+.output-hover-region:hover .output-hover-content {
+    display: block;
+}
+
+.dragging .output-hover-content {
+    display: none !important;
+}
+
+.pos-relative {
+    position: relative;
+}
+
+
+/* https://css-tricks.com/idea-simple-responsive-spreadsheet/ */
+
+table {
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+}
+
+td, th {
+    white-space: nowrap;
+    border: 1px solid #ddd;
+    padding: 7px;
+}
+
+th {
+    background-color: #eee;
+}
+
+tbody tr td:first-of-type {
+    background-color: #eee;
+}     
+
+iframe {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-grow {
+    flex-grow: 1;
+}
+
+.flex-center-content {
+    justify-content: center;
+    align-items: center;
+}
+
